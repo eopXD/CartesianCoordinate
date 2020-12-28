@@ -24,7 +24,7 @@ public: // contructor
   {
     static_assert(std::is_unsigned<typename ContainerT::value_type>::value &&
                     std::is_integral<typename ContainerT::value_type>::value,
-                  "ConainerT should be of unsigned integral");
+                  "ContainerT should be of unsigned integral");
     static_assert(std::is_same<T, typename ContainerT::value_type>::value, "ContainerT value type should match T");
     initializeVolume(maxAxis);
   }
@@ -51,7 +51,7 @@ public: // iterator
   iterator end() const { return iterator(m_maxOffset); }
   iterator at(std::initializer_list<T> startAxis) const
   {
-    assert(startAxis.size() == m_maxAxis.size() && "argument should be match the dimension initialized");
+    assert(startAxis.size() == m_maxAxis.size() && "argument should match the dimension initialized");
     offset_type currOffset = calcOffset(m_maxAxis.size(), std::begin(startAxis));
     return iterator(currOffset);
   }
@@ -59,7 +59,7 @@ public: // iterator
   iterator at(ContainerT startAxis) const
   {
     static_assert(std::is_same<T, typename ContainerT::value_type>::value, "ContainerT value type should match T");
-    assert(startAxis.size() == m_maxAxis.size() && "argument should be match the dimension initialized");
+    assert(startAxis.size() == m_maxAxis.size() && "argument should match the dimension initialized");
     offset_type currOffset = calcOffset(m_maxAxis.size(), std::begin(startAxis));
     return iterator(currOffset);
   }
